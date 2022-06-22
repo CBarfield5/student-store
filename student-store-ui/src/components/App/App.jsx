@@ -3,17 +3,30 @@ import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Home from "../Home/Home";
 import { BrowserRouter } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { Footer } from "../Footer/Footer";
 import "./App.css";
 
+const URL = "https://codepath-store-api.herokuapp.com/store";
+
 export default function App() {
+  const [products, setProducts] = useState([]);
+
+  async function fetchProducts() {
+    const { data } = await axios(URL);
+    setProducts(data.products);
+  }
+
+  fetchProducts();
   return (
     <div className="app">
       <BrowserRouter>
         <main>
-          {/* YOUR CODE HERE! */}
           <Navbar />
           <Sidebar />
-          <Home />
+          <Home products={products} />
+          <Footer />
         </main>
       </BrowserRouter>
     </div>

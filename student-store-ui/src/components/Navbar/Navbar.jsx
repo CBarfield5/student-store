@@ -30,7 +30,7 @@ export default function Navbar() {
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
                   >
-                    Features
+                    About Us
                   </a>
                 </li>
                 <li class="nav-item">
@@ -40,7 +40,7 @@ export default function Navbar() {
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
                   >
-                    Pricing
+                    Contact Us
                   </a>
                 </li>
                 <li class="nav-item mb-2 lg:mb-0">
@@ -50,7 +50,7 @@ export default function Navbar() {
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
                   >
-                    About
+                    Buy Now
                   </a>
                 </li>
               </ul>
