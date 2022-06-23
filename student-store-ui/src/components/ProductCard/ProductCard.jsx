@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const ProductCard = ({ product }) => {
   let fixedPrice = product.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
 
   return (
-    <a href={product.name} class="group py-6 ">
+    <a href={`product/${product.id}`} class="group py-6 ">
       <div class="w-full h-full object-contain bg-gray-200 rounded-lg overflow-hidden border-2 border-gray-200 shadow-lg">
         <img
           src={product.image}
