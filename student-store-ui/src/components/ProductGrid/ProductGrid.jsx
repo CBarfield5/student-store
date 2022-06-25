@@ -2,7 +2,12 @@ import React from "react";
 import { ProductCard } from "../ProductCard/ProductCard";
 import { useState } from "react";
 
-export const ProductGrid = ({ products }) => {
+export const ProductGrid = ({
+  products,
+  cart,
+  handleAddToCart,
+  handleRemoveFromCart,
+}) => {
   const [clickedCat, setClickedCat] = useState("");
   const [search, setSearch] = useState("");
 
@@ -22,18 +27,18 @@ export const ProductGrid = ({ products }) => {
     setSearch(e.target.value);
   };
   return (
-    <div class="bg-white">
-      <form class="pt-0 pb-10 px-20" onChange={(e) => handleChange(e)}>
+    <div className="bg-white">
+      <form className="pt-0 pb-10 px-20" onChange={(e) => handleChange(e)}>
         <label
           for="default-search"
-          class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
+          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
         >
           Search
         </label>
-        <div class="relative">
-          <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+        <div className="relative">
+          <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
             <svg
-              class="w-5 h-5 text-gray-500 dark:text-gray-400"
+              className="w-5 h-5 text-gray-500 dark:text-gray-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -50,67 +55,90 @@ export const ProductGrid = ({ products }) => {
           <input
             type="search"
             id="default-search"
-            class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search"
             required
           />
         </div>
       </form>
-      <div class="grid px-20 gap-2 grid-cols-2 md:grid-cols-4 lg:px-30">
+      <div className="grid px-20 gap-2 grid-cols-2 md:grid-cols-4 lg:px-30">
         <button
           onClick={() => handleClick("accessories")}
           type="button"
-          class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
           Accessories
         </button>
         <button
           onClick={() => handleClick("clothing")}
           type="button"
-          class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
           Clothing
         </button>
         <button
           onClick={() => handleClick("food")}
           type="button"
-          class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
           Food
         </button>
         <button
           onClick={() => handleClick("tech")}
           type="button"
-          class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
         >
           Tech
         </button>
       </div>
-      <div class="max-w-2xl mx-auto py-10 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 class="sr-only">Products</h2>
 
-        <div class="grid pb-10 grid-rows-4 grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+      <div className="max-w-2xl mx-auto py-10 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <h2 className="sr-only">Products</h2>
+
+        <div className="grid pb-10 grid-rows-4 grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {search != "" && clickedCat != ""
             ? currentSearch
                 .filter((products) => products.category == clickedCat)
                 .map((product, idx) => (
-                  <ProductCard product={product} key={idx} />
+                  <ProductCard
+                    product={product}
+                    key={idx}
+                    cart={cart}
+                    handleAddToCart={handleAddToCart}
+                    handleRemoveFromCart={handleRemoveFromCart}
+                  />
                 ))
             : search == "" && clickedCat == ""
             ? products.map((product, idx) => (
-                <ProductCard product={product} key={idx} />
+                <ProductCard
+                  product={product}
+                  key={idx}
+                  cart={cart}
+                  handleAddToCart={handleAddToCart}
+                  handleRemoveFromCart={handleRemoveFromCart}
+                />
               ))
             : search == ""
             ? currentProducts.map((product, idx) => (
-                <ProductCard product={product} key={idx} />
+                <ProductCard
+                  product={product}
+                  key={idx}
+                  cart={cart}
+                  handleAddToCart={handleAddToCart}
+                  handleRemoveFromCart={handleRemoveFromCart}
+                />
               ))
             : currentSearch.map((product, idx) => (
-                <ProductCard product={product} key={idx} />
+                <ProductCard
+                  product={product}
+                  key={idx}
+                  cart={cart}
+                  handleAddToCart={handleAddToCart}
+                  handleRemoveFromCart={handleRemoveFromCart}
+                />
               ))}
         </div>
       </div>
     </div>
   );
 };
-
-// Types: food, clothing, accesories, tech
