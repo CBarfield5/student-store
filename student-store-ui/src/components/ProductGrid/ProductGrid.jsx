@@ -8,26 +8,33 @@ export const ProductGrid = ({
   handleAddToCart,
   handleRemoveFromCart,
 }) => {
+  // useStates for category and search query handling
   const [clickedCat, setClickedCat] = useState("");
   const [search, setSearch] = useState("");
 
+  // regex for search querying
   const regexp = new RegExp(search, "i");
 
+  // filter products for category querying
   let currentProducts = products.filter(
     (products) => products.category == clickedCat
   );
 
+  // filter products for search querying
   let currentSearch = products.filter((products) => regexp.test(products.name));
 
+  // initiate category query hot-update
   const handleClick = (category) => {
     setClickedCat(category);
   };
 
+  // initiate search query hot-update
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
   return (
     <div className="bg-white">
+      {/* Searchbar input  */}
       <form className="pt-0 pb-10 px-20" onChange={(e) => handleChange(e)}>
         <label
           for="default-search"
@@ -61,32 +68,34 @@ export const ProductGrid = ({
           />
         </div>
       </form>
+
+      {/* Category query toggle buttons */}
       <div className="grid px-20 gap-2 grid-cols-2 md:grid-cols-4 lg:px-30">
         <button
           onClick={() => handleClick("accessories")}
           type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          className="py-2.5 px-3 mr-2 mb-2 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 md:text-sm"
         >
           Accessories
         </button>
         <button
           onClick={() => handleClick("clothing")}
           type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          className="py-2.5 px-3 mr-2 mb-2 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 md:text-sm"
         >
           Clothing
         </button>
         <button
           onClick={() => handleClick("food")}
           type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          className="py-2.5 px-3 mr-2 mb-2 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 md:text-sm"
         >
           Food
         </button>
         <button
           onClick={() => handleClick("tech")}
           type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          className="py-2.5 px-3 mr-2 mb-2 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 md:text-sm"
         >
           Tech
         </button>
@@ -96,6 +105,15 @@ export const ProductGrid = ({
         <h2 className="sr-only">Products</h2>
 
         <div className="grid pb-10 grid-rows-4 grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+          {/*          
+          Logic handling for 4 scenarios:
+
+          1. No search query or category query
+          2. both search query and category query
+          3. only category query 
+          4. only search query           
+          */}
+
           {search != "" && clickedCat != ""
             ? currentSearch
                 .filter((products) => products.category == clickedCat)

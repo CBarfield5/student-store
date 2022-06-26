@@ -1,6 +1,7 @@
 import React from "react";
 
 export const Footer = () => {
+  // Tailwind footer component template taken from https://flowbite.com/
   return (
     <footer className="p-4 bg-white sm:p-6 dark:bg-gray-800">
       <div className="md:flex md:justify-between">

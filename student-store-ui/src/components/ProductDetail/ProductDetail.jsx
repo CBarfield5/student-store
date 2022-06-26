@@ -7,17 +7,26 @@ export const ProductDetail = ({
   handleAddToCart,
   handleRemoveFromCart,
 }) => {
+  // Set variable for product route id via params
   const params = useParams();
 
-  let page = products.find((item) => item.id === parseInt(params.productId));
-  let fixedPrice = page?.price?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
-  let numInCart = cart?.find((item) => item.itemId === page.id)?.quantity;
+  // Set product id via params given
+  let product = products.find((item) => item.id === parseInt(params.productId));
 
+  // Transform product price to traditional $0.00 format
+  let fixedPrice = product?.price
+    ?.toFixed(2)
+    .replace(/\d(?=(\d{3})+\.)/g, "$&,");
+
+  // Find quantity of current item in cart
+  let numInCart = cart?.find((item) => item.itemId === product.id)?.quantity;
+
+  // On increment update cart, likewise for decrement
   const handleIncrement = () => {
-    handleAddToCart(page.id);
+    handleAddToCart(product.id);
   };
   const handleDecrement = () => {
-    handleRemoveFromCart(page.id);
+    handleRemoveFromCart(product.id);
   };
   return (
     <section class="text-gray-700 body-font overflow-hidden bg-white">
@@ -27,17 +36,17 @@ export const ProductDetail = ({
             <img
               alt="ecommerce"
               class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
-              src={page?.image}
+              src={product?.image}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 class="text-sm title-font text-gray-500 tracking-widest">
                 Student Store Essentials
               </h2>
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
-                {page?.name}
+                {product?.name}
               </h1>
               <div class="flex mb-4"></div>
-              <p class="leading-relaxed">{page?.description}</p>
+              <p class="leading-relaxed">{product?.description}</p>
 
               <div class="flex pt-5 self-center">
                 <span class="title-font font-medium text-2xl text-gray-900">

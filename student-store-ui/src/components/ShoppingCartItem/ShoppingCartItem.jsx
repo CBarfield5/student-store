@@ -7,28 +7,31 @@ export const ShoppingCartItem = ({
   handleRemoveFromCart,
   updateSubtotal,
 }) => {
-  let cartVal = products?.find((item) => item.id === product.itemId);
+  // set variable for components product id
+  const cartProduct = products?.find((item) => item.id === product.itemId);
 
-  let fixedPrice = cartVal.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+  // Transform product price to traditional $0.00 format
+  let productPrice = cartProduct.price
+    .toFixed(2)
+    .replace(/\d(?=(\d{3})+\.)/g, "$&,");
 
+  // On increment update cart, likewise for decrement
   const handleDecrement = () => {
-    handleRemoveFromCart(cartVal.id);
+    handleRemoveFromCart(cartProduct.id);
   };
-
   const handleIncrement = () => {
-    handleAddToCart(cartVal.id);
-    updateSubtotal();
+    handleAddToCart(cartProduct.id);
   };
 
   return (
     <div>
       <div class="flex justify-between items-center mt-6 pt-6">
         <div class="flex  items-center">
-          <img src={cartVal?.image} width="60" class="rounded-full " />
+          <img src={cartProduct?.image} width="60" class="rounded-full " />
 
           <div class="flex flex-col ml-3">
-            <span class="text-xl md:text-md font-medium text-black">
-              {cartVal?.name}
+            <span class="text-xs sm:text-md lg:text-xl font-medium text-black">
+              {cartProduct?.name}
             </span>
             <span class="text-xs font-light text-gray-900">{}</span>
           </div>
@@ -37,7 +40,7 @@ export const ShoppingCartItem = ({
         <div class="flex justify-center items-center">
           <div class="pr-8 flex ">
             <button
-              class="font-semibold text-black text-xl"
+              class="font-semibold text-black text-xs"
               onClick={handleDecrement}
             >
               -
@@ -45,12 +48,11 @@ export const ShoppingCartItem = ({
             <div
               type="text"
               class="text-black focus:outline-none bg-gray-200 border h-6 w-8 rounded text-m px-2 mx-2"
-              value="1"
             >
               {product.quantity}
             </div>
             <button
-              class="font-semibold text-black text-xl"
+              class="font-semibold text-black text-xs"
               onClick={handleIncrement}
             >
               +
@@ -58,7 +60,7 @@ export const ShoppingCartItem = ({
           </div>
 
           <div class="pr-8 ">
-            <span class="text-s font-medium text-black">${fixedPrice}</span>
+            <span class="text-s font-medium text-black">${productPrice}</span>
           </div>
         </div>
       </div>

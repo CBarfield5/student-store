@@ -6,9 +6,13 @@ export const ProductCard = ({
   handleAddToCart,
   handleRemoveFromCart,
 }) => {
+  // Transform product price to traditional $0.00 format
   let fixedPrice = product.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
 
+  // Find quantity of current item in cart
   let numInCart = cart?.find((item) => item.itemId === product.id)?.quantity;
+
+  // On increment update cart, likewise for decrement
   const handleIncrement = () => {
     handleAddToCart(product.id);
   };
