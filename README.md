@@ -6,6 +6,9 @@ Selling merchandise in the modern era requires digital solutions. For this proje
 
 ![Store Demo Gif](https://cdn.loom.com/sessions/thumbnails/b4958e10ab7944e487d08edd4f7c1368-1656135427874-with-play.gif")
 
+
+Original Link to Demo: https://www.loom.com/share/b4958e10ab7944e487d08edd4f7c1368
+
 ### Application Features
 
 #### Core Features
