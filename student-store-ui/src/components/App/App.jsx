@@ -74,14 +74,23 @@ export default function App() {
 
   // When cart state is altered, update the subtotal amount calculated
   const updateSubtotal = (tempCart) => {
-    let currentCart = tempCart;
-    let cartTotal = 0;
+    console.log(tempCart);
+    if (tempCart == undefined) {
+      setSub(0);
+    } else {
+      let currentCart = tempCart;
+      let cartTotal = 0;
 
-    // Iterate through each item in the cart and sum total cost by item price and quantity selected
-    currentCart.forEach((item) => {
-      cartTotal += item.quantity * products[item.itemId - 1].price;
-    });
-    setSub(cartTotal);
+      // Iterate through each item in the cart and sum total cost by item price and quantity selected
+      currentCart.forEach((item) => {
+        cartTotal += item.quantity * products[item.itemId - 1].price;
+      });
+      setSub(cartTotal);
+    }
+  };
+
+  const resetCart = () => {
+    setCart([]);
   };
 
   return (
@@ -95,6 +104,7 @@ export default function App() {
             handleAddToCart={handleAddToCart}
             handleRemoveFromCart={handleRemoveFromCart}
             updateSubtotal={updateSubtotal}
+            resetCart={resetCart}
             sub={sub}
           />
           <Routes>

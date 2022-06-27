@@ -5,7 +5,6 @@ export const ShoppingCartItem = ({
   products,
   handleAddToCart,
   handleRemoveFromCart,
-  updateSubtotal,
 }) => {
   // set variable for components product id
   const cartProduct = products?.find((item) => item.id === product.itemId);

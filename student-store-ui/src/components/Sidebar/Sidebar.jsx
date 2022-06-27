@@ -8,7 +8,9 @@ export default function Sidebar({
   products,
   handleAddToCart,
   handleRemoveFromCart,
+  updateSubtotal,
   sub,
+  resetCart,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -51,6 +53,8 @@ export default function Sidebar({
             cart={cart}
             handleAddToCart={handleAddToCart}
             handleRemoveFromCart={handleRemoveFromCart}
+            resetCart={resetCart}
+            updateSubtotal={updateSubtotal}
             sub={sub}
           />
         </div>
