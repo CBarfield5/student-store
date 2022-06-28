@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const ProductCard = ({
   product,
@@ -22,13 +23,13 @@ export const ProductCard = ({
   return (
     <div className="group py-6 ">
       <div className="w-full h-full object-contain bg-gray-200 rounded-lg overflow-hidden border-2 border-gray-200 shadow-lg">
-        <a href={`product/${product.id}`}>
+        <Link to={`product/${product.id}`}>
           <img
             src={product.image}
             alt={product.name}
             className="w-full h-full  object-cover group-hover:opacity-75 "
           />
-        </a>
+        </Link>
       </div>
       <div className="grid grid-cols-2">
         <div>
